@@ -22,7 +22,7 @@ ssid.oninput = pw.oninput = () => {
   location.hash = "#" + ssid.value + "," + pw.value;
 };
 const sp = location.hash.substring(1).split(",");
-if (sp) {
+if (sp[0]) {
   ssid.value = sp[0];
   pw.value = sp[1];
   ssid.oninput();

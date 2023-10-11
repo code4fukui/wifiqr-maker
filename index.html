@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>WiFi QRコードメーカー</title>
+</head><body>
+<h1>WiFi QRコードメーカー</h1>
+ローカルのみでQRコードを生成します(サーバーへ送信しません)<br>
+<input id=ssid placeholder=SSID><br>
+<input id=pw placeholder=パスワード><br>
+<div id=qrtxt></div>
+<div id=qr></div>
+<hr>
+Reference: <a href=https://en.wikipedia.org/wiki/QR_code>QR code - Wikipedia</a><br>
+App: <a href=https://github.com/code4fukui/wifiqr-maker/>src on GitHub</a><br>
+
+<script type="module">
+import { QRCode } from "https://js.sabae.cc/QRCode.js";
+
+ssid.oninput = pw.oninput = () => {
+  const data = `WIFI:T:WPA;S:${ssid.value};P:${pw.value};;`;
+  qr.innerHTML = "";
+  qr.appendChild(new QRCode(data));
+  qrtxt.textContent = data;
+};
+</script>
+
+<style>
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+* {
+  margin: .5em;
+}
+#qr {
+  margin: 1em;
+}
+a {
+  color: gray !important;
+}
+</style>
+
+</body></html>
